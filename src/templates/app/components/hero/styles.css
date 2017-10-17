@@ -1,0 +1,9 @@
+.hero-image {
+	background-image: url('http://res.cloudinary.com/wholebear/image/upload/v1507431948/sneaky-elbow-324446_ahqjpj.jpg');
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 380px;
+    // opacity: 80%;
+    width: 100%;
+}
