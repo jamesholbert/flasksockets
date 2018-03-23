@@ -1,15 +1,15 @@
 // var webpack = require('webpack');
 var path = require('path');
 
-var DIST_DIR = path.resolve(__dirname,"dist");
+var DIST_DIR = path.resolve(__dirname,"static");
 var SRC_DIR = path.resolve(__dirname,"src");
 
 var config = {
 	entry: SRC_DIR + "/app/index.js",
 	output: {
-		path: DIST_DIR + "/app",
+		path: DIST_DIR,
 		filename: "bundle.js",
-		publicPath: "/dist/"
+		// publicPath: "/dist/"
 	},
 	module: {
 		loaders: [
@@ -20,6 +20,10 @@ var config = {
 				query: {
 					presets: ["react", "es2015", "stage-2"]
 				}
+			},
+			{
+				test: /\.css$/,
+  				loader: "css-loader"
 			}
 		]
 	}
