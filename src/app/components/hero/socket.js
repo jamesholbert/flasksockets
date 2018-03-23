@@ -3,8 +3,8 @@ const socket = openSocket('http://localhost:5000');
 socket.on('messageToClient', (message)=>{console.log(message)});
 
 // socket.on('')
-function socketFunction(cb) {
-  socket.emit('sendDataToServer', 'data');
+function socketFunction(name) {
+  socket.emit('sendDataToServer', name);
 }
 export default socketFunction;
 

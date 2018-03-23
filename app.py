@@ -10,12 +10,11 @@ app = Flask(__name__, template_folder=tmpl_dir)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
-users = []
+users = 0
 
 @app.route("/")
 @app.route("/index")
 def index():
-	print('yo')
 	return render_template('index.html') 
 
 @socketio.on('connect')
@@ -30,8 +29,8 @@ def handle_message():
 
 @socketio.on('sendDataToServer')
 def handle_message(data):
-	print('got data from client:' + data)
-	socketio.emit('messageToClient', 'server received data!')
+	print('got data from client: ' + str(data))
+	socketio.emit('messageToClient', "server received data: " + str(data))
 # @app.errorhandler(404)
 # def page_not_found(e):
 # 	return render_template('404.html'), 404
