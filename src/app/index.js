@@ -4,6 +4,10 @@ import ReactDOM from 'react-dom';
 import {Hero} from './components/hero/Hero';
 
 class App extends React.Component {
+	constructor(props) {
+		super(props)	
+	}
+
 	render() {
 		return (
 			<div>
