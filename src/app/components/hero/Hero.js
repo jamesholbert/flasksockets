@@ -10,7 +10,7 @@ export class Hero extends React.Component {
 		this.state = {
 			'name':'',
 			'history':[],
-			'socket': openSocket('http://localhost')
+			'socket': openSocket()
 		}
 		// const socket = openSocket('http://localhost:5000');
 	}
