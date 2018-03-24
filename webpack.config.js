@@ -22,9 +22,18 @@ var config = {
 			},
 			{
 				test: /\.css$/,
-  				loader: "css-loader"
-			}
-		]
+  				loader: ["style-loader","css-loader"]
+			},
+	        {
+	       		test: /\.(png|jpg|gif)$/,
+	      		use: [
+	        		{
+			            loader: 'file-loader',
+			            options: {}  
+	          		}
+	        	]
+	        }
+	    ]
 	}
 };
 

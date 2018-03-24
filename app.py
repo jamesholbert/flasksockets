@@ -30,7 +30,7 @@ def handle_message():
 @socketio.on('sendDataToServer')
 def handle_message(data):
 	print('got data from client: ' + str(data))
-	socketio.emit('messageToClient', "server received data: " + str(data))
+	socketio.emit('messageToClient', str(data))
 # @app.errorhandler(404)
 # def page_not_found(e):
 # 	return render_template('404.html'), 404

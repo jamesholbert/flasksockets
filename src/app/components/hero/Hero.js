@@ -1,18 +1,39 @@
 import React from 'react';
-import socketFunction from './socket'
+// import socketFunction from './socket'
 import './styles.css';
+import openSocket from 'socket.io-client';
+import webpackImage from '../../images/webpack.png'
 
 export class Hero extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state={'name':''}		
+		this.state = {
+			'name':'',
+			'history':[],
+			'socket': openSocket('http://localhost:5000')
+		}
+		// const socket = openSocket('http://localhost:5000');
+	}
+	
+	componentDidMount() {
+		this.state.socket.on('messageToClient', (message)=>{this.saveHistory(message)});
 	}
 
+	saveHistory(message) {
+		console.log('received')
+		let newHistory = this.state.history
+		newHistory.push(message)
+		this.setState({'history': newHistory})
+	}
+
+	socketFunction(name) {
+		  this.state.socket.emit('sendDataToServer', name);
+	}
+	
 	handleClick() {
-		// let x = JSON.stringify(this.state.name)
 		let x = this.state.name
-		socketFunction(x)
-		console.log(x)
+		this.socketFunction(x)
+		this.setState({'name':''})
 	}
 
 	onChange(ev) {
@@ -21,8 +42,9 @@ export class Hero extends React.Component {
 	render() {
 		return (
 			<div className='blue'>
-				Hello blues
-				<input onChange={this.onChange.bind(this)}></input>
+				<img src={webpackImage} />
+				{this.state.history.map((thing)=>{return <div key={thing}>{thing}</div>})}
+				<input onChange={this.onChange.bind(this)} value={this.state.name}></input>
 				<button onClick={this.handleClick.bind(this)}>Click me!</button>
 			</div>
 		)
